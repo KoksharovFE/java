@@ -9,8 +9,21 @@
     tools:context="com.astra.app.MainActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/time_display_box"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="@string/_00_30"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <Button
+        android:id="@+id/startbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="@string/start" />
 
 </RelativeLayout>
