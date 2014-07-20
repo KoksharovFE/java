@@ -23,3 +23,12 @@ To try it, place the caret at the symbol you want to rename, and press Shift+F6 
 You may easily override methods of the base class by pressing Ctrl+O (Code | Override Methods).
 To implement methods of the interfaces that the current class implements (or of the abstract base class), use Ctrl+I (Code | Implement Methods).
 press Ctrl+Shift+Space: The SmartType code completion greatly helps to find methods and variables that are suitable in the current context
+
+/bot ru7
+/host aptb ~tee~~
+/hold 10 dotazavr12345
+
+-rr3 -fow -ban -sl -ur -it8
+
+dark
+5ul 5ul 5ul 5ul 5um 5um 5um 5um 5um 5up 5up 5up 5up 5up 5us 5us 5us 5us 5us 5uu 5uu 5uu 5vi 606 606 606 606 606 606 606 606 606 606 606 606 606 7t5 7t6 7t8 7ta 7tb 7td 7tf 7um 8pt

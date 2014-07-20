@@ -17,6 +17,16 @@
         android:layout_marginTop="60dp"
         android:text="@string/_00_30"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <TextView
+        android:id="@+id/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:text="@string/hello_world"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:hint="@string/hello_world"
+        android:layout_below="@+id/time_display_box"
+        android:layout_centerHorizontal="true" />
     <Button
         android:id="@+id/startbutton"
         android:layout_width="wrap_content"
