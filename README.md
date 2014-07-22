@@ -27,7 +27,11 @@ press Ctrl+Shift+Space: The SmartType code completion greatly helps to find meth
 /bot ru7
 /host aptb ~tee~~
 /hold 10 dotazavr12345
-
+cd H:
+cd H:\andWs\astrak1
+git add .
+git commit -m "comment"
+git push -u origin master
 -rr3 -fow -ban -sl -ur -it8
 
 dark
