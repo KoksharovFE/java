@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="wallpapers">
+        <item>c1</item>
+        <item>c2</item>
+        <item>c3</item>
+        <item>c4</item>
+        <item>c5</item>
+    </string-array>
+    
+</resources>
