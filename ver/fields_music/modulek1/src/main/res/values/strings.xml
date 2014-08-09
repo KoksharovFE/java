@@ -12,4 +12,5 @@
     <string name="birth_data">Date of Birth</string>
     <string name="education">Education</string>
     <string name="hobby">Hobby</string>
+    <string name="output_data">Your data</string>
 </resources>

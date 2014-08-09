@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
     LayoutInflater inflater;
     private SoundPool soundPool;
     private int soundID;
-
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -112,12 +112,22 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, outRes);
         lvMain.setAdapter(adapter);
+
         if(soundID==0){
-            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
             mediaPlayer.start(); // запускаем воспроизведение
+            soundID = (soundID + 1) ;
+        }
+        if(soundID% 2==0 && soundID!=0){
+            mediaPlayer.stop();
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
+            mediaPlayer.start(); // запускаем воспроизведение
+            soundID = (soundID + 1) ;
         } else {
-            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fefcfcf4e61c); // создаём новый объект mediaPlayer
+            mediaPlayer.stop();
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fefcfcf4e61c); // создаём новый объект mediaPlayer
             mediaPlayer.start(); // запускаем воспроизведение
+            soundID = (soundID + 1) ;
         }
 
 
@@ -158,7 +168,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
-        float MOVE_LENGTH = 100;
+        float MOVE_LENGTH = 150;
         switch (event.getAction())
         {
             case MotionEvent.ACTION_DOWN: // Пользователь нажал на экран, т.е. начало движения
