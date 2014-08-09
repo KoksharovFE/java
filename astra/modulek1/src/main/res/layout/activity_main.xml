@@ -12,10 +12,6 @@
         android:onClick="buttonClicked"
         android:id="@+id/button" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvMain" />
     <ViewFlipper
         android:id="@+id/flipper"
         android:layout_width="fill_parent"

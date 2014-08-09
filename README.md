@@ -33,7 +33,7 @@ cd H:\andWs\astrak1
 git add .
 git commit -m "comment"
 git push -u origin master
--rr3 -fow -ban -sl -ur -it8 -skip
+-rr3 -fow -ban -sl -ur -it9 -skip
 
 dark
 5ul 5ul 5ul 5ul 5um 5um 5um 5um 5um 5up 5up 5up 5up 5up 5us 5us 5us 5us 5us 5uu 5uu 5uu 5vi 606 606 606 606 606 606 606 606 606 606 606 606 606 7t5 7t6 7t8 7ta 7tb 7td 7tf 7um 8pt
