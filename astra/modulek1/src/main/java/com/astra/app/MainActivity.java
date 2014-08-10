@@ -48,6 +48,9 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
     MediaPlayer mediaPlayer;
     NotificationManager mNotificationManager;
     private static final int NOTIFY_ID = 1; // Уникальный индификатор вашего уведомления в пределах класса
+    GPSTracker gps;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -72,8 +75,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
         editText4 = (EditText) findViewById(R.id.editText4);
         editText5 = (EditText) findViewById(R.id.editText5);
         lvMain = (ListView) findViewById(R.id.lvMain);
-        outRes=new String[5];
+        outRes=new String[6];
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); // Создаем экземпляр менеджера уведомлений
+        outRes[5]="@string/gps_begin";
+        gps = new GPSTracker(this);
 
     }
 
@@ -97,11 +102,19 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
     }
 
     public void buttonClicked(View view)  {
+
         outRes[0]=editText1.getText().toString();
         outRes[1]=editText2.getText().toString();
         outRes[2]=editText3.getText().toString();
         outRes[3]=editText4.getText().toString();
         outRes[4]=editText5.getText().toString();
+        if(gps.canGetLocation()){ // gps enabled} // return boolean true/false
+            double Latitude = gps.getLatitude(); // returns latitude
+            double Longitude = gps.getLongitude(); // returns longitude
+            outRes[5] = "Latitude : " + Latitude + " && Longitude : " + Longitude;
+        }  else {
+            gps.showSettingsAlert();
+        }
         //setContentView(R.layout.activity_main);
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, outRes);
@@ -172,5 +185,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
         }
         return true;
     }
+
 
 }

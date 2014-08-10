@@ -5,5 +5,7 @@
     <string name="app_name">АстраК1</string>
     <string name="start">Запуск</string>
     <string name="hello_world">Привет Мир!</string>
-
+    <string name="gps_begin">Ваши данные gps не получены</string>
+    <string name="Latitude">Широта</string>
+    <string name="Longitude">Долгота</string>
 </resources>
