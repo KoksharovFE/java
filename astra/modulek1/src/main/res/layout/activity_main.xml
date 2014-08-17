@@ -12,6 +12,13 @@
         android:onClick="buttonClicked"
         android:id="@+id/button" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:text="@string/second_next"
+        android:onClick="buttonClicked"
+        android:id="@+id/button2" />
+
     <ViewFlipper
         android:id="@+id/flipper"
         android:layout_width="fill_parent"

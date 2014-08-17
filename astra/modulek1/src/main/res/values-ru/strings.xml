@@ -8,4 +8,16 @@
     <string name="gps_begin">Ваши данные gps не получены</string>
     <string name="Latitude">Широта</string>
     <string name="Longitude">Долгота</string>
+    <string name="name">Имя</string>
+    <string name="next">Далее</string>
+    <string name="surname">Фамилия</string>
+    <string name="birth_data">День Рождения</string>
+    <string name="education">Образование</string>
+    <string name="hobby">Хобби</string>
+    <string name="output_data">Ваши Данные</string>
+    <string name="second_next">Следующая Активность</string>
+    <string name="title_section1">1 Секция</string>
+    <string name="title_section2">2 Секция</string>
+    <string name="title_section3">3 Секция</string>
+    <string name="returns">Возврат</string>
 </resources>

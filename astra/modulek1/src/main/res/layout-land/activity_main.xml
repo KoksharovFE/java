@@ -17,9 +17,21 @@
         android:onClick="buttonClicked"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:text="@string/second_next"
+        android:onClick="buttonClicked"
+        android:id="@+id/button2"
+        android:layout_alignBottom="@+id/button"
+        android:layout_toRightOf="@+id/button"
+        android:layout_alignTop="@+id/button" />
 
     <ViewFlipper
         android:id="@+id/flipper"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/button" />
 </RelativeLayout>

@@ -102,52 +102,60 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
     }
 
     public void buttonClicked(View view)  {
+        switch (view.getId()) {
+            case R.id.button: {
+                outRes[0]=editText1.getText().toString();
+                outRes[1]=editText2.getText().toString();
+                outRes[2]=editText3.getText().toString();
+                outRes[3]=editText4.getText().toString();
+                outRes[4]=editText5.getText().toString();
+                if(gps.canGetLocation()){ // gps enabled} // return boolean true/false
+                    double Latitude = gps.getLatitude(); // returns latitude
+                    double Longitude = gps.getLongitude(); // returns longitude
+                    outRes[5] = "Latitude : " + Latitude + " && Longitude : " + Longitude;
+                }  else {
+                    gps.showSettingsAlert();
+                }
+                //setContentView(R.layout.activity_main);
+                adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_list_item_1, outRes);
+                lvMain.setAdapter(adapter);
 
-        outRes[0]=editText1.getText().toString();
-        outRes[1]=editText2.getText().toString();
-        outRes[2]=editText3.getText().toString();
-        outRes[3]=editText4.getText().toString();
-        outRes[4]=editText5.getText().toString();
-        if(gps.canGetLocation()){ // gps enabled} // return boolean true/false
-            double Latitude = gps.getLatitude(); // returns latitude
-            double Longitude = gps.getLongitude(); // returns longitude
-            outRes[5] = "Latitude : " + Latitude + " && Longitude : " + Longitude;
-        }  else {
-            gps.showSettingsAlert();
-        }
-        //setContentView(R.layout.activity_main);
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, outRes);
-        lvMain.setAdapter(adapter);
+                if(soundID==0){
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
+                    mediaPlayer.start(); // запускаем воспроизведение
+                    soundID = (soundID + 1) ;
+                }
+                if(soundID% 2==0 && soundID!=0){
+                    mediaPlayer.stop();
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
+                    mediaPlayer.start(); // запускаем воспроизведение
+                    soundID = (soundID + 1) ;
+                } else {
+                    mediaPlayer.stop();
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fefcfcf4e61c); // создаём новый объект mediaPlayer
+                    mediaPlayer.start(); // запускаем воспроизведение
+                    soundID = (soundID + 1) ;
+                }
+                int icon = R.drawable.c4; // Иконка для уведомления, я решил воспользоваться стандартной иконкой для Email
+                CharSequence tickerText = "Astrak1 wait"; // Подробнее под кодом
+                long when = System.currentTimeMillis(); // Выясним системное время
+                Notification notification = new Notification(icon, tickerText, when); // Создаем экземпляр уведомления, и передаем ему наши параметры
+                Context context = getApplicationContext();
+                //
+                CharSequence contentTitle = "Astramarii presents"; // Текст заголовка уведомления при развернутой строке статуса
+                CharSequence contentText = outRes[0]+":"+outRes[1]+":"+outRes[2]+":"+outRes[3]+":"+outRes[4]; //Текст под заголовком уведомления при развернутой строке статуса
+                Intent notificationIntent = new Intent(this, MainActivity.class); // Создаем экземпляр Intent
+                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);// Подробное описание в UPD к статье
+                notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent); // Передаем в наше уведомление параметры вида при развернутой строке состояния
+                mNotificationManager.notify(NOTIFY_ID, notification); // И наконец показываем наше уведомление через менеджер передав его ID
 
-        if(soundID==0){
-            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
-            mediaPlayer.start(); // запускаем воспроизведение
-            soundID = (soundID + 1) ;
+                break;}
+            case R.id.button2:{
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+                break;}
         }
-        if(soundID% 2==0 && soundID!=0){
-            mediaPlayer.stop();
-            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
-            mediaPlayer.start(); // запускаем воспроизведение
-            soundID = (soundID + 1) ;
-        } else {
-            mediaPlayer.stop();
-            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fefcfcf4e61c); // создаём новый объект mediaPlayer
-            mediaPlayer.start(); // запускаем воспроизведение
-            soundID = (soundID + 1) ;
-        }
-        int icon = R.drawable.c4; // Иконка для уведомления, я решил воспользоваться стандартной иконкой для Email
-        CharSequence tickerText = "Astrak1 wait"; // Подробнее под кодом
-        long when = System.currentTimeMillis(); // Выясним системное время
-        Notification notification = new Notification(icon, tickerText, when); // Создаем экземпляр уведомления, и передаем ему наши параметры
-        Context context = getApplicationContext();
-        //
-        CharSequence contentTitle = "Astramarii presents"; // Текст заголовка уведомления при развернутой строке статуса
-        CharSequence contentText = outRes[0]+":"+outRes[1]+":"+outRes[2]+":"+outRes[3]+":"+outRes[4]; //Текст под заголовком уведомления при развернутой строке статуса
-        Intent notificationIntent = new Intent(this, MainActivity.class); // Создаем экземпляр Intent
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);// Подробное описание в UPD к статье
-        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent); // Передаем в наше уведомление параметры вида при развернутой строке состояния
-        mNotificationManager.notify(NOTIFY_ID, notification); // И наконец показываем наше уведомление через менеджер передав его ID
 
     }
 
@@ -188,3 +196,9 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
 
 
 }
+
+//Intent intent = new Intent(PassingDataDemoActivity.this, Privet.class);
+//
+//intent.putExtra("username", edUserName.getText().toString()); // в ключ username пихаем текст из первого текстового поля
+//        intent.putExtra("gift", edDescription.getText().toString());  // в ключ gift пихаем текст из второго текстового поля
+//        startActivity(intent);

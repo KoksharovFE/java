@@ -15,5 +15,12 @@
     <string name="output_data">Your data</string>
     <string name="gps_begin">Your gps data not taken</string>
     <string name="Latitude">Latitude</string>
+    <string name="returns">Return</string>
     <string name="Longitude">Longitude</string>
+    <string name="second_next">Next activity</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
 </resources>
