@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.astra.app.SecondActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:id="@+id/button3"
+        android:onClick="buttonClicked2"
+        android:layout_gravity="left|top" />
+
+    <TextView
+        android:layout_width="322dp"
+        android:layout_height="112dp"
+        android:text="@string/output_data"
+        android:id="@+id/textViewS"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:layout_width="243dp"
+        android:layout_height="79dp"
+        android:text="@string/output_data"
+        android:id="@+id/editTextS"
+        android:layout_gravity="right|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/returns"
+        android:id="@+id/button4"
+        android:onClick="buttonClicked2"
+        android:layout_gravity="right|bottom" />
+</FrameLayout>
