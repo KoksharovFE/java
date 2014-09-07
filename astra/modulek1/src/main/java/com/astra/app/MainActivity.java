@@ -28,28 +28,27 @@ import android.widget.ViewFlipper;
 
 public class MainActivity extends Activity implements View.OnTouchListener {//implements View.OnTouchListener
 
-//    float x;
+    private static final int NOTIFY_ID = 1; // Уникальный индификатор вашего уведомления в пределах класса
+    protected ListView lvMain;
+    //    protected Button button, button1,button2,button3,button4,button5;
+    protected EditText etName, editText1, editText2, editText3, editText4, editText5;
+    //    float x;
 //    float y;
     //private GestureDetector gestureScanner;
     //protected TextView tvName;
     //protected EditText editTex
     // t;
     ViewFlipper flipper;
-    protected ListView lvMain;
-//    protected Button button, button1,button2,button3,button4,button5;
-    protected EditText etName,editText1,editText2,editText3,editText4,editText5;
     int counter = 0;
     String[] outRes;
     ArrayAdapter<String> adapter;
     float fromPosition;
     LayoutInflater inflater;
-    private SoundPool soundPool;
-    private int soundID;
     MediaPlayer mediaPlayer;
     NotificationManager mNotificationManager;
-    private static final int NOTIFY_ID = 1; // Уникальный индификатор вашего уведомления в пределах класса
     GPSTracker gps;
-
+    private SoundPool soundPool;
+    private int soundID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +63,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
         flipper = (ViewFlipper) findViewById(R.id.flipper);
         // Создаем View и добавляем их в уже готовый flipper
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        int layouts[] = new int[]{ R.layout.inputform1, R.layout.inputform2, R.layout.inputform3, R.layout.inputform4, R.layout.inputform5, R.layout.voidform};
+        int layouts[] = new int[]{R.layout.inputform1, R.layout.inputform2, R.layout.inputform3, R.layout.inputform4, R.layout.inputform5, R.layout.voidform};
         for (int layout : layouts)
             flipper.addView(inflater.inflate(layout, null));
-        soundID=0;
+        soundID = 0;
         //Toast.makeText(this, "Зачем вы нажали?", Toast.LENGTH_SHORT).show();//всплывающее окно
         editText1 = (EditText) findViewById(R.id.editText1);
         editText2 = (EditText) findViewById(R.id.editText2);
@@ -75,9 +74,9 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
         editText4 = (EditText) findViewById(R.id.editText4);
         editText5 = (EditText) findViewById(R.id.editText5);
         lvMain = (ListView) findViewById(R.id.lvMain);
-        outRes=new String[6];
+        outRes = new String[6];
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); // Создаем экземпляр менеджера уведомлений
-        outRes[5]="@string/gps_begin";
+        outRes[5] = "@string/gps_begin";
         gps = new GPSTracker(this);
 
     }
@@ -101,19 +100,19 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
         return super.onOptionsItemSelected(item);
     }
 
-    public void buttonClicked(View view)  {
+    public void buttonClicked(View view) {
         switch (view.getId()) {
             case R.id.button: {
-                outRes[0]=editText1.getText().toString();
-                outRes[1]=editText2.getText().toString();
-                outRes[2]=editText3.getText().toString();
-                outRes[3]=editText4.getText().toString();
-                outRes[4]=editText5.getText().toString();
-                if(gps.canGetLocation()){ // gps enabled} // return boolean true/false
+                outRes[0] = editText1.getText().toString();
+                outRes[1] = editText2.getText().toString();
+                outRes[2] = editText3.getText().toString();
+                outRes[3] = editText4.getText().toString();
+                outRes[4] = editText5.getText().toString();
+                if (gps.canGetLocation()) { // gps enabled} // return boolean true/false
                     double Latitude = gps.getLatitude(); // returns latitude
                     double Longitude = gps.getLongitude(); // returns longitude
                     outRes[5] = "Latitude : " + Latitude + " && Longitude : " + Longitude;
-                }  else {
+                } else {
                     gps.showSettingsAlert();
                 }
                 //setContentView(R.layout.activity_main);
@@ -121,21 +120,21 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
                         android.R.layout.simple_list_item_1, outRes);
                 lvMain.setAdapter(adapter);
 
-                if(soundID==0){
+                if (soundID == 0) {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
                     mediaPlayer.start(); // запускаем воспроизведение
-                    soundID = (soundID + 1) ;
+                    soundID = (soundID + 1);
                 }
-                if(soundID% 2==0 && soundID!=0){
+                if (soundID % 2 == 0 && soundID != 0) {
                     mediaPlayer.stop();
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.b80bf280be27); // создаём новый объект mediaPlayer
                     mediaPlayer.start(); // запускаем воспроизведение
-                    soundID = (soundID + 1) ;
+                    soundID = (soundID + 1);
                 } else {
                     mediaPlayer.stop();
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.fefcfcf4e61c); // создаём новый объект mediaPlayer
                     mediaPlayer.start(); // запускаем воспроизведение
-                    soundID = (soundID + 1) ;
+                    soundID = (soundID + 1);
                 }
                 int icon = R.drawable.c4; // Иконка для уведомления, я решил воспользоваться стандартной иконкой для Email
                 CharSequence tickerText = "Astrak1 wait"; // Подробнее под кодом
@@ -144,17 +143,19 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
                 Context context = getApplicationContext();
                 //
                 CharSequence contentTitle = "Astramarii presents"; // Текст заголовка уведомления при развернутой строке статуса
-                CharSequence contentText = outRes[0]+":"+outRes[1]+":"+outRes[2]+":"+outRes[3]+":"+outRes[4]; //Текст под заголовком уведомления при развернутой строке статуса
+                CharSequence contentText = outRes[0] + ":" + outRes[1] + ":" + outRes[2] + ":" + outRes[3] + ":" + outRes[4]; //Текст под заголовком уведомления при развернутой строке статуса
                 Intent notificationIntent = new Intent(this, MainActivity.class); // Создаем экземпляр Intent
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);// Подробное описание в UPD к статье
                 notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent); // Передаем в наше уведомление параметры вида при развернутой строке состояния
                 mNotificationManager.notify(NOTIFY_ID, notification); // И наконец показываем наше уведомление через менеджер передав его ID
 
-                break;}
-            case R.id.button2:{
+                break;
+            }
+            case R.id.button2: {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
-                break;}
+                break;
+            }
         }
 
     }
@@ -162,8 +163,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         float MOVE_LENGTH = 150;
-        switch (event.getAction())
-        {
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: // Пользователь нажал на экран, т.е. начало движения
                 // fromPosition - координата по оси X начала выполнения операции
                 fromPosition = event.getX();
@@ -173,18 +173,15 @@ public class MainActivity extends Activity implements View.OnTouchListener {//im
                 float toPosition = event.getX();
                 // MOVE_LENGTH - расстояние по оси X, после которого можно переходить на след. экран
                 // В моем тестовом примере MOVE_LENGTH = 150
-                if ((fromPosition - MOVE_LENGTH) > toPosition)
-                {
+                if ((fromPosition - MOVE_LENGTH) > toPosition) {
                     fromPosition = toPosition;
-                    flipper.setInAnimation(AnimationUtils.loadAnimation(this,R.anim.go_next_in));
+                    flipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.go_next_in));
                     flipper.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.go_next_out));
                     flipper.showNext();
-                }
-                else if ((fromPosition + MOVE_LENGTH) < toPosition)
-                {
+                } else if ((fromPosition + MOVE_LENGTH) < toPosition) {
                     fromPosition = toPosition;
-                    flipper.setInAnimation(AnimationUtils.loadAnimation(this,R.anim.go_prev_in));
-                    flipper.setOutAnimation(AnimationUtils.loadAnimation(this,R.anim.go_prev_out));
+                    flipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.go_prev_in));
+                    flipper.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.go_prev_out));
                     flipper.showPrevious();
                 }
                 break;

@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.astra.app.factograph.m_fact.Overview"
+            android:label="@string/title_activity_overview"></activity>
+        <activity
+            android:name="com.astra.app.factograph.m_fact.Details"
+            android:label="@string/title_activity_details"></activity>
     </application>
 
 </manifest>

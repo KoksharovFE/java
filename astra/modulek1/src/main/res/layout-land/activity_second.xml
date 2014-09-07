@@ -4,37 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.astra.app.SecondActivity"
-    tools:ignore="MergeRootFrame" >
+    tools:ignore="MergeRootFrame">
 
     <Button
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start"
-        android:id="@+id/button3"
+        android:layout_gravity="left|top"
         android:onClick="buttonClicked2"
-        android:layout_gravity="left|top" />
+        android:text="@string/start" />
 
     <EditText
+        android:id="@+id/editTextS"
         android:layout_width="490dp"
         android:layout_height="59dp"
-        android:id="@+id/editTextS"
-        android:text="@string/output_data"
-        android:layout_gravity="right|top" />
+        android:layout_gravity="right|top"
+        android:text="@string/output_data" />
 
     <Button
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/returns"
-        android:id="@+id/button4"
+        android:layout_gravity="right|bottom"
         android:onClick="buttonClicked2"
-        android:layout_gravity="right|bottom" />
+        android:text="@string/returns" />
 
     <TextView
+        android:id="@+id/textViewS"
         android:layout_width="611dp"
         android:layout_height="90dp"
-        android:text="@string/output_data"
-        android:id="@+id/textViewS"
+        android:layout_gravity="left|center_vertical"
         android:autoLink="web"
         android:linksClickable="true"
-        android:layout_gravity="left|center_vertical" />
+        android:text="@string/output_data" />
 </FrameLayout>

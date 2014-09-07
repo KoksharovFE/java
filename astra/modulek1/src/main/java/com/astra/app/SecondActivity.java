@@ -24,10 +24,10 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
      * current dropdown position.
      */
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-    float fromPosition;
-    int counter = 0;
     protected TextView texts;
     protected EditText editText;
+    float fromPosition;
+    int counter = 0;
     Button button3;
 
     @Override
@@ -45,12 +45,14 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
                         actionBar.getThemedContext(),
                         android.R.layout.simple_list_item_1,
                         android.R.id.text1,
-                        new String[] {
+                        new String[]{
                                 getString(R.string.title_section1),
                                 getString(R.string.title_section2),
                                 getString(R.string.title_section3),
-                        }),
-                this);
+                        }
+                ),
+                this
+        );
 
 //        button3=(Button)findViewById(R.id.button3);
 //        //button3.setOnClickListener(this);
@@ -92,7 +94,7 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.second, menu);
         return true;
@@ -120,6 +122,81 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
         return true;
     }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        float MOVE_LENGTH = 150;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: // Пользователь нажал на экран, т.е. начало движения
+                // fromPosition - координата по оси X начала выполнения операции
+                fromPosition = event.getX();
+                break;
+            // Вместо ACTION_UP
+            case MotionEvent.ACTION_MOVE:
+                float toPosition = event.getX();
+                // MOVE_LENGTH - расстояние по оси X, после которого можно переходить на след. экран
+                // В моем тестовом примере MOVE_LENGTH = 150
+                if ((fromPosition - MOVE_LENGTH) > toPosition) {
+                    fromPosition = toPosition;
+                    counter++;
+                } else if ((fromPosition + MOVE_LENGTH) < toPosition) {
+                    fromPosition = toPosition;
+                    counter--;
+                }
+                break;
+            default:
+                break;
+        }
+
+        switch (counter % 5) {
+            case 0: {
+                //texts.setText(editText.getText().toString());
+                texts.setBackgroundResource(R.color.bcWhite); // первый вариант
+                break;
+            }
+            case 1: {
+                texts.setBackgroundResource(R.color.bcBlue);
+                break;
+            }
+            case 2: {
+                texts.setBackgroundResource(R.color.bcGreen);
+                break;
+            }
+            case 3: {
+                texts.setBackgroundResource(R.color.bcRed);
+                break;
+            }
+            case 4: {
+                texts.setBackgroundResource(R.color.bcStrange);
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    public void buttonClicked2(View view) {
+        switch (view.getId()) {
+            case R.id.button3: {
+                try {
+                    String s;
+                    s = editText.getText().toString();
+                    if (s != null) {
+                        texts.setText(s);
+                        //texts.setText("Text Changed");
+                    }
+                } catch (NullPointerException e1) {
+                    texts.setText("null");
+                }
+                break;
+            }
+            case R.id.button4: {
+                this.finish();
+                break;
+            }
+        }
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -129,6 +206,9 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public PlaceholderFragment() {
+        }
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -142,12 +222,9 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
             return fragment;
         }
 
-        public PlaceholderFragment() {
-        }
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
@@ -156,84 +233,4 @@ public class SecondActivity extends Activity implements ActionBar.OnNavigationLi
     }
 
 
-    @Override
-    public boolean onTouch(View view, MotionEvent event) {
-        float MOVE_LENGTH = 150;
-        switch (event.getAction())
-        {
-            case MotionEvent.ACTION_DOWN: // Пользователь нажал на экран, т.е. начало движения
-                // fromPosition - координата по оси X начала выполнения операции
-                fromPosition = event.getX();
-                break;
-            // Вместо ACTION_UP
-            case MotionEvent.ACTION_MOVE:
-                float toPosition = event.getX();
-                // MOVE_LENGTH - расстояние по оси X, после которого можно переходить на след. экран
-                // В моем тестовом примере MOVE_LENGTH = 150
-                if ((fromPosition - MOVE_LENGTH) > toPosition)
-                {
-                    fromPosition = toPosition;
-                    counter++;
-                }
-                else if ((fromPosition + MOVE_LENGTH) < toPosition)
-                {
-                    fromPosition = toPosition;
-                    counter--;
-                }
-                break;
-            default:
-                break;
-        }
-
-        switch (counter%5){
-            case 0:{
-                //texts.setText(editText.getText().toString());
-                texts.setBackgroundResource(R.color.bcWhite); // первый вариант
-                break;
-            }
-            case 1:{
-                texts.setBackgroundResource(R.color.bcBlue);
-                break;
-            }
-            case 2:{
-                texts.setBackgroundResource(R.color.bcGreen);
-                break;
-            }
-            case 3:{
-                texts.setBackgroundResource(R.color.bcRed);
-                break;
-            }
-            case 4:{
-                texts.setBackgroundResource(R.color.bcStrange);
-                break;
-            }
-        }
-
-        return true;
-    }
-
-    public void buttonClicked2(View view)  {
-        switch (view.getId()) {
-            case R.id.button3:{
-                try {
-                    String s;
-                    s = editText.getText().toString();
-                    if (s != null) {
-                        texts.setText(s);
-                        //texts.setText("Text Changed");
-                    }
-                } catch (NullPointerException e1){
-                    texts.setText("null");
-                }
-                break;
-            }
-            case R.id.button4:{
-                this.finish();
-                break;
-            }
-        }
-
-    }
-
-
-    }
+}
